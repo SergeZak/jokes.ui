@@ -7,8 +7,14 @@ angular.module('myApp', [
     'myApp.jokes',
     'myApp.view2',
     'myApp.auth',
-    'myApp.version'
+    'myApp.version',
+    'satellizer'
 ])
-    //.config(['$routeProvider', function($routeProvider) {
-    //    $routeProvider.otherwise({redirectTo: '/view1'});
-    //}]);
+    .config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
+
+        $authProvider.loginUrl = 'http://jokes.proj/api/v1/authenticate';
+        // $urlRouterProvider.otherwise('/view1');
+        $urlRouterProvider.otherwise('/auth');
+
+
+    }]);

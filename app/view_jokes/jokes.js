@@ -13,6 +13,21 @@ angular.module('myApp.jokes', [])
             })
     }])
 
-    .controller('JokesCtrl', ['$rootScope', function($rootScope){
+    .controller('JokesCtrl', ['$http', '$auth', '$rootScope','$state', '$q' , function($http, $auth, $rootScope, $state, $q) {
 
-    }])
+        var vm = this;
+
+        vm.jokes = [];
+        vm.error;
+        vm.joke;
+
+        $http.get('http://jokes.proj/api/v1/jokes').success(function(jokes){
+            console.log(jokes);
+            vm.jokes = jokes.data;
+        }).error(function(error){
+            vm.error = error;
+        })
+
+        //vm.init();
+
+    }]);
