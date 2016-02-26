@@ -34,6 +34,46 @@ angular.module('myApp.jokes', [])
             vm.error = error;
         })
 
-        //vm.init();
+
+        vm.addJoke = function() {
+
+            $http.post('http://jokes.proj/api/v1/jokes', {
+                body: vm.joke,
+                user_id: $rootScope.currentUser.id
+            }).success(function(response) {
+                // console.log(vm.jokes);
+                // vm.jokes.push(response.data);
+                vm.jokes.unshift(response.data);
+                console.log(vm.jokes);
+                vm.joke = '';
+                // alert(data.message);
+                // alert("Joke Created Successfully");
+            }).error(function(){
+                console.log("error");
+            });
+        };
+
+        vm.updateJoke = function(joke){
+            console.log(joke);
+            $http.put('http://jokes.proj/api/v1/jokes/' + joke.joke_id, {
+                body: joke.joke,
+                user_id: $rootScope.currentUser.id
+            }).success(function(response) {
+                // alert("Joke Updated Successfully");
+            }).error(function(){
+                console.log("error");
+            });
+        }
+
+
+        vm.deleteJoke = function(index, jokeId){
+            console.log(index, jokeId);
+
+            $http.delete('http://jokes.proj/api/v1/jokes/' + jokeId)
+                .success(function() {
+                    vm.jokes.splice(index, 1);
+                });;
+        }
+
 
     }]);

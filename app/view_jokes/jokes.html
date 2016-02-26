@@ -1,8 +1,28 @@
 <div class="col-sm-6 col-sm-offset-3">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Add new joke.." ng-model="jokes.joke">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="jokes.addJoke()">Add!</button>
+                  </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+    <br>
     <div>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="joke in jokes.jokes">
-                <h5>{{joke.joke}}</h5>
+                <span ng-hide="editEnabled">
+                            {{joke.joke}}
+                                <a href="#" ng-click="editEnabled=!editEnabled"><span class="glyphicon glyphicon-pencil" ></span></a>
+                </span>
+                <span ng-show="editEnabled">
+                            <input ng-model="joke.joke">
+                            <a href="#" ng-click="editEnabled=!editEnabled; jokes.updateJoke(joke)"><span class="glyphicon glyphicon-ok" ></span></a>
+                </span>
+                <!-- <h4>{{joke.joke}}</h4> -->
+                <span style="cursor: pointer;" class="glyphicon glyphicon-trash" ng-click="jokes.deleteJoke($index, joke.joke_id)"></span>
                 <h5>{{joke.submitted_by}}</h5>
             </li>
         </ul>
