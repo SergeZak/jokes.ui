@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="app.css">
+
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -39,11 +46,11 @@
                 <li><a ui-sref="jokes">Jokes</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-show="currentUser != null">
-                <li><a href="">Welcome, {{currentUser.name}}</a></li>
+                <li><a href="javascript:void(0)">Welcome, {{currentUser.name}}</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Profile <span class="caret"></span></a>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Profile <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a ng-click="logout()" style="cursor: pointer;">Logout</a></li>
+                        <li><a href="javascript:void(0)" ng-click="logout()" style="cursor: pointer;">Logout</a></li>
                     </ul>
                 </li>
             </ul>

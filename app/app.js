@@ -10,11 +10,21 @@ angular.module('myApp', [
     'myApp.version',
     'satellizer'
 ])
-    .config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
 
+    .run(function ($rootScope, $state, $auth) {
+
+        $rootScope.logout = function() {
+            $auth.logout().then(function() {
+                localStorage.removeItem('user');
+                $rootScope.currentUser = null;
+                $state.go('auth');
+            });
+        }
+        $rootScope.currentUser = JSON.parse(localStorage.getItem('user'));
+    })
+
+    .config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
         $authProvider.loginUrl = 'http://jokes.proj/api/v1/authenticate';
         // $urlRouterProvider.otherwise('/view1');
         $urlRouterProvider.otherwise('/auth');
-
-
     }]);
