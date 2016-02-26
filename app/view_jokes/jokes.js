@@ -34,6 +34,33 @@ angular.module('myApp.jokes', [])
             vm.error = error;
         })
 
+        vm.lastpage=1;
+        vm.init = function() {
+            vm.lastpage=1;
+            $http({
+                url: 'http://jokes.proj/api/v1/jokes',
+                method: "GET",
+                params: {page:  vm.lastpage}
+            }).success(function(jokes, status, headers, config) {
+                vm.jokes = jokes.data;
+                vm.currentpage = jokes.current_page;
+            });
+        };
+        vm.init();
+
+        vm.loadMore = function() {
+            vm.lastpage +=1;
+            $http({
+                url: 'http://jokes.proj/api/v1/jokes',
+                method: "GET",
+                params: {page:  vm.lastpage}
+            }).success(function (jokes, status, headers, config) {
+
+                vm.jokes = vm.jokes.concat(jokes.data);
+
+            });
+        };
+
 
         vm.addJoke = function() {
 
